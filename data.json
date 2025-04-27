@@ -1,4 +1,6 @@
 {
-	"maxGuess": 6,
-	"averageGuess": 4.290283203125
+	"maxGuess": 5,
+	"averageGuess": 3.662037037037037,
+	"guessSD": 0.54572710460663,
+	"medianGuess": 4
 }

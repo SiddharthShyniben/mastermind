@@ -9,6 +9,7 @@ const DATA = {
 }
 
 let sum = 0;
+let entries = []
 
 function test(word) {
 	let stamp = Date.now();
@@ -30,6 +31,7 @@ function test(word) {
 	if (guesses > DATA.maxGuess) DATA.maxGuess = guesses
 
 	sum += guesses
+	entries.push(guesses)
 	
 	console.log(word, "guessed in", guesses, "tries")
 }
@@ -41,5 +43,10 @@ for (const word of allCombs) {
 console.timeEnd("Testing took")
 
 DATA.averageGuess = sum / allCombs.length
+const SD = Math.sqrt(entries.map(e => (DATA.averageGuess - e) ** 2).reduce((a, b) => a + b) / allCombs.length)
+DATA.guessSD = SD
+entries.sort()
+DATA.medianGuess = entries[entries.length / 2]
+
 console.log(DATA)
 writeFileSync("data.json", JSON.stringify(DATA, null, "\t"))
